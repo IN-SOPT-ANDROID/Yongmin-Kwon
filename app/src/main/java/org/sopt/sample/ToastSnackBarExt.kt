@@ -5,18 +5,26 @@ import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
-fun View.shortSnackbar(stringId: Int): Unit {
+fun View.defaultSnackbar(stringId: Int): Unit {
     Snackbar.make(this, stringId, Snackbar.LENGTH_SHORT).show()
 }
 
+fun View.shortSnackbar(stringId: Int): Unit {
+    Snackbar.make(this, stringId, Snackbar.LENGTH_SHORT).apply {
+        anchorView = this@shortSnackbar
+    }.show()
+}
+
 fun View.LongSnackbar(stringId: Int): Unit {
-    Snackbar.make(this, stringId, Snackbar.LENGTH_LONG).show()
+    Snackbar.make(this, stringId, Snackbar.LENGTH_LONG).apply {
+        anchorView = this@LongSnackbar
+    }.show()
 }
 
-fun Context.shortToast(message : String){
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+fun Context.shortToast(stringId: Int) {
+    Toast.makeText(this, stringId, Toast.LENGTH_SHORT).show()
 }
 
-fun Context.longToast(message : String){
-    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+fun Context.longToast(stringId: Int) {
+    Toast.makeText(this, stringId, Toast.LENGTH_LONG).show()
 }
