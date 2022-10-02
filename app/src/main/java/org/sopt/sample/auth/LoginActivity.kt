@@ -41,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
         binding.buttonLoginLogin.setOnClickListener {
             if (!isLoginValid()) return@setOnClickListener
             val mainIntent = Intent(this, MainActivity::class.java)
+            mainIntent.putExtra("id", id)
+            mainIntent.putExtra("mbti", mbti)
             startActivity(mainIntent)
         }
     }
