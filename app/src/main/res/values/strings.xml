@@ -19,4 +19,7 @@
     <string name="mbtiIsStrange">없는 MBTI입니다</string>
     <string name="mbtiIsShort">MBTI가 짧습니다</string>
     <string name="needSignUp">회원가입이 필요합니다</string>
+
+    <string name="myPageName">이름 : %1$s</string>
+    <string name="myPageMbti">MBTI : %1$s</string>
 </resources>
