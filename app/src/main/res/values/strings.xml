@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">INSOPTAndroidPractice</string>
+    <string name="sopt">SOPT</string>
+    <string name="login">LOGIN</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="enterPw">비밀번호를 입력하세요</string>
+    <string name="enterId">아이디를 입력하세요</string>
+    <string name="id">ID</string>
+    <string name="password">PASSWORD</string>
+
+    <string name="mbti">MBTI</string>
+    <string name="enterMbti">MBTI를 입력하세요</string>
+    <string name="failSignUp">회원가입에 실패했습니다</string>
 </resources>
