@@ -22,8 +22,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun clickSignUp() {
-        binding.buttonSignUpSignUp.setOnClickListener{
-            if(!isSignUpValid()) return@setOnClickListener
+        binding.buttonSignUpSignUp.setOnClickListener {
+            if (!isSignUpValid()) return@setOnClickListener
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("id", binding.editSignUpId.text.toString())
             intent.putExtra("pw", binding.editSignUpPw.text.toString())
@@ -33,10 +33,10 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun isSignUpValid() : Boolean{
-        if(!isIdValid()) return false
-        if(!isPwValid()) return false
-        if(!isMbtiValid()) return false
+    private fun isSignUpValid(): Boolean {
+        if (!isIdValid()) return false
+        if (!isPwValid()) return false
+        if (!isMbtiValid()) return false
         else return true
     }
 
