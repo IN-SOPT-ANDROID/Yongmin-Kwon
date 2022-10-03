@@ -10,18 +10,17 @@ import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.defaultSnackbar
 import org.sopt.sample.main.MainActivity
-import org.sopt.sample.shortToast
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
+    private val authChecking = AuthChecking()
     private var id: String? = null
     private var pw: String? = null
     private var mbti: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -39,30 +38,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun clickLogin() {
         binding.buttonLoginLogin.setOnClickListener {
-            if (!isLoginValid()) return@setOnClickListener
+            val inputId = binding.editLoginId.text.toString()
+            val inputPw = binding.editLoginPw.text.toString()
+            if (!authChecking.isSignInValid(this, id, pw, inputId, inputPw))
+                return@setOnClickListener
             val mainIntent = Intent(this, MainActivity::class.java)
             mainIntent.putExtra("id", id)
             mainIntent.putExtra("mbti", mbti)
             startActivity(mainIntent)
-        }
-    }
-
-    private fun isLoginValid(): Boolean {
-        if (id == null) {
-            shortToast(R.string.needSignUp)
-            return false
-        } else if ((binding.editLoginId.text.toString() != id) and (binding.editLoginPw.text.toString() != pw)) {
-            shortToast(R.string.checkIdPw)
-            return false
-        } else if (binding.editLoginId.text.toString() != id) {
-            shortToast(R.string.checkId)
-            return false
-        } else if (binding.editLoginPw.text.toString() != pw) {
-            shortToast(R.string.checkPw)
-            return false
-        } else {
-            shortToast(R.string.succeedSignIn)
-            return true
         }
     }
 
