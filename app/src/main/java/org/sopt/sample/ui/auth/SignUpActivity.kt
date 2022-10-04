@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
+import org.sopt.sample.databinding.ActivitySignUpBinding
+import org.sopt.sample.shortSnackbar
 import org.sopt.sample.ui.auth.AuthChecking.Companion.CORRECT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.SHORT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.STRANGE
-import org.sopt.sample.databinding.ActivitySignUpBinding
-import org.sopt.sample.shortSnackbar
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -27,6 +27,7 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             intent.putExtra("id", binding.editSignUpId.text.toString())
             intent.putExtra("pw", binding.editSignUpPw.text.toString())
+            intent.putExtra("name", binding.editSignUpName.text.toString())
             intent.putExtra("mbti", binding.editSignUpMbti.text.toString())
             setResult(RESULT_OK, intent)
             finish()
@@ -36,6 +37,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun isSignUpValid(): Boolean {
         val id = binding.editSignUpId.text.toString()
         val pw = binding.editSignUpPw.text.toString()
+        val name = binding.editSignUpName.text.toString()
         val mbti = binding.editSignUpMbti.text.toString()
 
         if (!authChecking.isSignUpIdValid(id)) {
