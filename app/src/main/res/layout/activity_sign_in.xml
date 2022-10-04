@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:constraint_referenced_ids="buttonLoginLogin,buttonLoginSignUp"
-        app:flow_horizontalGap="20dp"
+        app:flow_horizontalGap="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editLoginPw" />
