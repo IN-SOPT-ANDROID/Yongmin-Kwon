@@ -1,12 +1,12 @@
-package org.sopt.sample.auth
+package org.sopt.sample.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
-import org.sopt.sample.auth.AuthChecking.Companion.CORRECT
-import org.sopt.sample.auth.AuthChecking.Companion.SHORT
-import org.sopt.sample.auth.AuthChecking.Companion.STRANGE
+import org.sopt.sample.ui.auth.AuthChecking.Companion.CORRECT
+import org.sopt.sample.ui.auth.AuthChecking.Companion.SHORT
+import org.sopt.sample.ui.auth.AuthChecking.Companion.STRANGE
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.shortSnackbar
 
