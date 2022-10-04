@@ -51,6 +51,29 @@
         app:layout_constraintTop_toBottomOf="@+id/textSignUpPw" />
 
     <TextView
+        android:id="@+id/textSignUpName"
+        style="@style/LoginTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editSignUpPw" />
+
+    <EditText
+        android:id="@+id/editSignUpName"
+        style="@style/LoginEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:hint="@string/enterName"
+        android:inputType="textCapCharacters"
+        android:maxLength="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSignUpName" />
+
+    <TextView
         android:id="@+id/textSignUpMbti"
         style="@style/LoginTextView"
         android:layout_width="wrap_content"
@@ -58,7 +81,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/mbti"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSignUpPw" />
+        app:layout_constraintTop_toBottomOf="@+id/editSignUpName" />
 
     <EditText
         android:id="@+id/editSignUpMbti"
@@ -77,14 +100,14 @@
         android:id="@+id/buttonSignUpSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:background="@color/black"
         android:letterSpacing="0.1"
         android:text="@string/signUp"
         android:textColor="@color/white"
         android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSignUpMbti" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
