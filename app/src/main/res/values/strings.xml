@@ -24,4 +24,8 @@
 
     <string name="myPageName">이름 : %1$s</string>
     <string name="myPageMbti">MBTI : %1$s</string>
+    <string name="auto_login">AUTO LOGIN</string>
+    <string name="logout">LOGOUT</string>
+    <string name="name">NAME</string>
+    <string name="enterName">이름을 입력하세요</string>
 </resources>
