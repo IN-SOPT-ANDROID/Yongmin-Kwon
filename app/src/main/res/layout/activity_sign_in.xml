@@ -30,6 +30,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLoginTitle" />
 
+    <CheckBox
+        android:id="@+id/checkBoxAutoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auto_login"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/textLoginId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textLoginId" />
+
     <EditText
         android:id="@+id/editLoginId"
         style="@style/LoginEditText"
