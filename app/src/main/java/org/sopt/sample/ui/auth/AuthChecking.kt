@@ -1,4 +1,4 @@
-package org.sopt.sample.auth
+package org.sopt.sample.ui.auth
 
 import android.content.Context
 import org.sopt.sample.R
