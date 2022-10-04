@@ -24,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun clickSignUp() {
         binding.buttonSignUpSignUp.setOnClickListener {
             if (!isSignUpValid()) return@setOnClickListener
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             intent.putExtra("id", binding.editSignUpId.text.toString())
             intent.putExtra("pw", binding.editSignUpPw.text.toString())
             intent.putExtra("mbti", binding.editSignUpMbti.text.toString())
