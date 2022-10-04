@@ -38,7 +38,8 @@ class AuthChecking {
 
     private val mbtiList: List<String> = listOf(
         "ESTJ", "ESTP", "ESFJ", "ESFP", "ENTJ", "ENTP", "ENFJ", "ENFP",
-        "ISTJ", "ISTP", "ISFJ", "ISFP", "INTJ", "INTP", "INFJ", "INFP"
+        "ISTJ", "ISTP", "ISFJ", "ISFP", "INTJ", "INTP", "INFJ", "INFP",
+        "CUTE", "SEXY"
     )
 
     companion object {
