@@ -36,7 +36,8 @@
     <string name="major">미디어기술콘텐츠학과</string>
     <string name="scholarship">학력</string>
     <string name="website">웹사이트</string>
-    <string name="github">Github</string>
+    <string name="github"><u>Github</u></string>
     <string name="sourceFrom">design by youngjin in uijeongbu</string>
-    <string name="instagram">Instagram</string>
+    <string name="instagram"><u>Instagram</u></string>
+    <string name="noApp">연결할 수 있는 앱이 없습니다</string>
 </resources>
