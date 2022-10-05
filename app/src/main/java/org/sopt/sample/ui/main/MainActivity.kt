@@ -20,26 +20,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initText() {
-        var id = intent.getStringExtra("id")
-        var name = intent.getStringExtra("name")
-        var mbti = intent.getStringExtra("mbti")
-        if (name == null) {
-            val sharedPref = MySharedPreferences()
-            sharedPref.init(this)
-            id = sharedPref.loginId
-            name = sharedPref.loginName
-            mbti = sharedPref.loginMbti
-        }
-        binding.textMainId.text = id
-        binding.textMainName.text = name
-        binding.textMbti.text = mbti
+        val sharedPref = MySharedPreferences()
+        sharedPref.init(this)
+        binding.textMainId.text = sharedPref.loginId
+        binding.textMainName.text = sharedPref.loginName
+        binding.textMbti.text = sharedPref.loginMbti
     }
 
     private fun clickLogout() {
         binding.buttonLogout.setOnClickListener {
             val sharedPref = MySharedPreferences()
             sharedPref.init(this)
-            sharedPref.clear()
+            sharedPref.autoLogin = false
             goToLogin()
         }
     }

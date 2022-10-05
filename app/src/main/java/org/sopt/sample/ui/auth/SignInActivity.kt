@@ -16,8 +16,6 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
     private val authChecking = AuthChecking()
-    private var id: String? = null
-    private var pw: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +36,16 @@ class SignInActivity : AppCompatActivity() {
 
     private fun clickLogin() {
         binding.buttonLoginLogin.setOnClickListener {
+            val sharedPref = MySharedPreferences()
+            sharedPref.init(this)
+            val id = sharedPref.loginId
+            val pw = sharedPref.loginPw
             val inputId = binding.editLoginId.text.toString()
             val inputPw = binding.editLoginPw.text.toString()
             if (!authChecking.isSignInValid(this, id, pw, inputId, inputPw))
                 return@setOnClickListener
-            val mainIntent = Intent(this, MainActivity::class.java)
             checkAutoLogin()
+            val mainIntent = Intent(this, MainActivity::class.java)
             startActivity(mainIntent)
             finish()
         }
@@ -58,8 +60,6 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getResultFromSignUp(result: ActivityResult) {
         if (result.resultCode == RESULT_OK) {
-            id = result.data?.getStringExtra("id")
-            pw = result.data?.getStringExtra("pw")
             binding.root.defaultSnackbar(R.string.succeedSignUp)
         } else binding.root.defaultSnackbar(R.string.failSignUp)
     }
