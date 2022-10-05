@@ -22,6 +22,7 @@
         android:letterSpacing="0.1"
         android:textColor="@color/white"
         android:textSize="20dp"
+        android:fontFamily="@font/sebang_gothic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
