@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             val sharedPref = MySharedPreferences()
             sharedPref.init(this)
             sharedPref.autoLogin = false
+            sharedPref.loginName = null
             goToLogin()
         }
     }
