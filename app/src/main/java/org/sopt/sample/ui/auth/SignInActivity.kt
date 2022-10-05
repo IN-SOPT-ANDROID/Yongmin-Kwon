@@ -18,8 +18,6 @@ class SignInActivity : AppCompatActivity() {
     private val authChecking = AuthChecking()
     private var id: String? = null
     private var pw: String? = null
-    private var name: String? = null
-    private var mbti: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +43,6 @@ class SignInActivity : AppCompatActivity() {
             if (!authChecking.isSignInValid(this, id, pw, inputId, inputPw))
                 return@setOnClickListener
             val mainIntent = Intent(this, MainActivity::class.java)
-            mainIntent.putExtra("id", id)
-            mainIntent.putExtra("mbti", mbti)
             checkAutoLogin()
             startActivity(mainIntent)
             finish()
@@ -64,23 +60,14 @@ class SignInActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             id = result.data?.getStringExtra("id")
             pw = result.data?.getStringExtra("pw")
-            name = result.data?.getStringExtra("name")
-            mbti = result.data?.getStringExtra("mbti")
             binding.root.defaultSnackbar(R.string.succeedSignUp)
         } else binding.root.defaultSnackbar(R.string.failSignUp)
     }
 
     private fun checkAutoLogin() {
+        if (!binding.checkBoxAutoLogin.isChecked) return
         val sharedPref = MySharedPreferences()
         sharedPref.init(this)
-        sharedPref.run {
-            autoLogin = binding.checkBoxAutoLogin.isChecked
-            if (autoLogin) {
-                loginId = id
-                loginPw = pw
-                loginName = name
-                loginMbti = mbti
-            }
-        }
+        sharedPref.autoLogin = true
     }
 }
