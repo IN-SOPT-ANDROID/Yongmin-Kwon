@@ -3,7 +3,6 @@ package org.sopt.sample.ui.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.ui.auth.SignInActivity
@@ -21,18 +20,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initText() {
-        val name = intent.getStringExtra("name")
-        val mbti = intent.getStringExtra("mbti")
-        if(name==null){
+        var id = intent.getStringExtra("id")
+        var name = intent.getStringExtra("name")
+        var mbti = intent.getStringExtra("mbti")
+        if (name == null) {
             val sharedPref = MySharedPreferences()
             sharedPref.init(this)
-            binding.textMainName.text = sharedPref.loginName
-            binding.textMainId.text = sharedPref.loginId
-            binding.textMypageMbti.text = getString(R.string.myPageMbti, sharedPref.loginMbti)
-        } else{
-            binding.textMainName.text = getString(R.string.myPageName, name)
-            binding.textMypageMbti.text = getString(R.string.myPageMbti, mbti)
+            id = sharedPref.loginId
+            name = sharedPref.loginName
+            mbti = sharedPref.loginMbti
         }
+        binding.textMainId.text = id
+        binding.textMainName.text = name
+        binding.textMbti.text = mbti
     }
 
     private fun clickLogout() {
@@ -40,9 +40,13 @@ class MainActivity : AppCompatActivity() {
             val sharedPref = MySharedPreferences()
             sharedPref.init(this)
             sharedPref.clear()
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-            finish()
+            goToLogin()
         }
+    }
+
+    private fun goToLogin() {
+        val intent = Intent(this, SignInActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
