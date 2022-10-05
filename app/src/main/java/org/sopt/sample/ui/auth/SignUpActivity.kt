@@ -20,6 +20,11 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         clickSignUp()
+        clickBack()
+    }
+
+    private fun clickBack() {
+        binding.buttonBack.setOnClickListener { finish() }
     }
 
     private fun clickSignUp() {
