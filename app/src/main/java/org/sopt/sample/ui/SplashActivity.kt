@@ -37,18 +37,20 @@ class SplashActivity : AppCompatActivity() {
         val id = sharedPref.loginId
         val autoLogin = sharedPref.autoLogin
         if (id == null) startLogin()
-        if (autoLogin) startMain()
+        else if (autoLogin) startMain()
         else startLogin()
     }
 
     private fun startLogin() {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun startMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun setDelay() {
