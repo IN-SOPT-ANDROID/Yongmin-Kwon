@@ -28,4 +28,14 @@
     <string name="logout">LOGOUT</string>
     <string name="name">NAME</string>
     <string name="enterName">이름을 입력하세요</string>
+    <string name="myInfo">내 정보</string>
+    <string name="age">Age</string>
+    <string name="part">Part</string>
+    <string name="university">가톨릭대</string>
+    <string name="major">미디어기술콘텐츠학과</string>
+    <string name="scholarship">학력</string>
+    <string name="website">웹사이트</string>
+    <string name="github">Github</string>
+    <string name="sourceFrom">design by youngjin in uijeongbu</string>
+    <string name="instagram">Instagram</string>
 </resources>
