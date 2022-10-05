@@ -38,6 +38,7 @@
         android:textColor="@color/black"
         android:textSize="10dp"
         android:textStyle="italic"
+        android:buttonTint="@color/black"
         app:layout_constraintBottom_toBottomOf="@id/textLoginId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/textLoginId" />
