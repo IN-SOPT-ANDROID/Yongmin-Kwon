@@ -1,10 +1,14 @@
 package org.sopt.sample.ui.main
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.databinding.ActivityMainBinding
+import org.sopt.sample.defaultSnackbar
 import org.sopt.sample.ui.auth.SignInActivity
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
         initText()
         clickLogout()
+        clickGithub()
+        clickInstagram()
     }
 
     private fun initText() {
@@ -41,5 +47,33 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun clickGithub() {
+        binding.linkGithub.setOnClickListener {
+            val githubIntent: Intent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/briandr97"))
+
+            try {
+                startActivity(githubIntent)
+            } catch (e: ActivityNotFoundException) {
+                binding.root.defaultSnackbar(R.string.noApp)
+            }
+        }
+    }
+
+    private fun clickInstagram() {
+        binding.linkInstagram.setOnClickListener {
+            val instaIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/k_dragonm/"))
+            val title = getString(R.string.instagram)
+            val chooser = Intent.createChooser(instaIntent, title)
+
+            try {
+                startActivity(chooser)
+            } catch (e: ActivityNotFoundException) {
+                binding.root.defaultSnackbar(R.string.noApp)
+            }
+        }
     }
 }
