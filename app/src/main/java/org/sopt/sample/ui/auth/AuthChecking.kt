@@ -1,4 +1,4 @@
-package org.sopt.sample.auth
+package org.sopt.sample.ui.auth
 
 import android.content.Context
 import org.sopt.sample.R
@@ -8,6 +8,8 @@ class AuthChecking {
     fun isSignUpIdValid(id: String): Boolean = (id.length in 6..10)
 
     fun isSignUpPwValid(pw: String): Boolean = (pw.length in 8..12)
+
+    fun isSignUpNameValid(name : String) : Boolean = (name.length in 1..3)
 
     fun isSignUpMbtiValid(mbti: String): Int {
         if (mbti.length < 4) return SHORT
