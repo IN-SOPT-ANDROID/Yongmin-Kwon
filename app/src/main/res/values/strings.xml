@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">INSOPTAndroidPractice</string>
+    <string name="sopt">SOPT</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="enterPw">비밀번호를 입력하세요</string>
+    <string name="enterId">아이디를 입력하세요</string>
+    <string name="id">ID</string>
+    <string name="password">PASSWORD</string>
+
+    <string name="mbti">MBTI</string>
+    <string name="enterMbti">MBTI를 입력하세요</string>
+    <string name="failSignUp">회원가입에 실패했습니다</string>
+    <string name="succeedSignUp">회원가입에 성공했습니다</string>
+    <string name="succeedSignIn">로그인에 성공했습니다</string>
+    <string name="checkId">아이디를 확인하세요</string>
+    <string name="checkPw">비밀번호를 확인하세요</string>
+    <string name="checkName">이름을 확인하세요</string>
+    <string name="checkIdPw">아이디와 비밀번호를 확인하세요</string>
+    <string name="mbtiIsStrange">없는 MBTI입니다</string>
+    <string name="mbtiIsShort">MBTI가 짧습니다</string>
+    <string name="needSignUp">회원가입이 필요합니다</string>
+    <string name="idDescription">ID는 6~10글자로 작성해주세요</string>
+    <string name="pwDescription">PW는 8~12글자로 작성해주세요</string>
+
+    <string name="myPageName">이름 : %1$s</string>
+    <string name="myPageMbti">MBTI : %1$s</string>
+    <string name="auto_login">AUTO LOGIN</string>
+    <string name="logout">LOGOUT</string>
+    <string name="name">NAME</string>
+    <string name="enterName">이름을 입력하세요</string>
+    <string name="myInfo">내 정보</string>
+    <string name="age">Age</string>
+    <string name="part">Part</string>
+    <string name="university">가톨릭대</string>
+    <string name="major">미디어기술콘텐츠학과</string>
+    <string name="scholarship">학력</string>
+    <string name="website">웹사이트</string>
+    <string name="github"><u>Github</u></string>
+    <string name="sourceFrom">design by youngjin in uijeongbu</string>
+    <string name="instagram"><u>Instagram</u></string>
+    <string name="noApp">연결할 수 있는 앱이 없습니다</string>
 </resources>
