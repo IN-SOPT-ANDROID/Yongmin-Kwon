@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
-    tools:context=".auth.LoginActivity">
+    tools:context=".ui.auth.SignInActivity">
 
     <TextView
         android:id="@+id/textLoginTitle"
@@ -29,6 +29,19 @@
         android:text="@string/id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLoginTitle" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAutoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auto_login"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        android:textStyle="italic"
+        android:buttonTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/textLoginId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textLoginId" />
 
     <EditText
         android:id="@+id/editLoginId"
@@ -63,6 +76,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLoginPw" />
 
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:constraint_referenced_ids="buttonLoginLogin,buttonLoginSignUp"
+        app:flow_horizontalGap="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editLoginPw" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonLoginLogin"
         android:layout_width="0dp"
@@ -70,12 +93,9 @@
         android:layout_marginTop="30dp"
         android:background="@color/black"
         android:letterSpacing="0.1"
-        android:text="@string/login"
+        android:text="@string/sign_in"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLoginPw" />
+        android:textSize="20dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonLoginSignUp"
@@ -86,9 +106,6 @@
         android:letterSpacing="0.1"
         android:text="@string/signUp"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLoginLogin" />
+        android:textSize="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
