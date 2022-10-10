@@ -40,4 +40,9 @@
     <string name="sourceFrom">design by youngjin in uijeongbu</string>
     <string name="instagram"><u>Instagram</u></string>
     <string name="noApp">연결할 수 있는 앱이 없습니다</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">home</string>
+    <string name="search">search</string>
+    <string name="gallery">gallery</string>
 </resources>

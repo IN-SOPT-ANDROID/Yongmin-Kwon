@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.SampleFragment">
+    tools:context=".ui.main.GalleryFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HomeFragment" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

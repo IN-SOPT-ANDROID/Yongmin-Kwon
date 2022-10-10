@@ -12,13 +12,20 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initFragment()
+        controlBottomNavi()
     }
 
-    private fun initFragment() {
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragmentContainerHome, SampleFragment())
-            .commit()
+    private fun controlBottomNavi() {
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            when (it.itemId) {
+                R.id.menu_home -> transaction.replace(R.id.fragmentContainerHome, HomeFragment())
+                R.id.menu_search -> transaction.replace(R.id.fragmentContainerHome, SearchFragment())
+                R.id.menu_gallery -> transaction.replace(R.id.fragmentContainerHome, GalleryFragment())
+                else -> error("바텀 네비게이션 오류! 아이디값 문제!")
+            }
+            transaction.commit()
+            true
+        }
     }
 }
