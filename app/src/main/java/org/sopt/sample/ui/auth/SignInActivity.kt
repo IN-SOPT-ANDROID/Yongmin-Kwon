@@ -45,11 +45,11 @@ class SignInActivity : AppCompatActivity() {
             if (!authChecking.isSignInValid(this, id, pw, inputId, inputPw))
                 return@setOnClickListener
             checkAutoLogin()
-            goToMypage()
+            goToHome()
         }
     }
 
-    private fun goToMypage() {
+    private fun goToHome() {
         val mainIntent = Intent(this, HomeActivity::class.java)
         startActivity(mainIntent)
         finish()

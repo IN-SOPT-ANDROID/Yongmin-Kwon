@@ -11,6 +11,7 @@ import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySplashBinding
 import org.sopt.sample.ui.auth.SignInActivity
+import org.sopt.sample.ui.main.HomeActivity
 import org.sopt.sample.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
         val id = sharedPref.loginId
         val autoLogin = sharedPref.autoLogin
         if (id == null) startLogin()
-        else if (autoLogin) startMain()
+        else if (autoLogin) startHome()
         else startLogin()
     }
 
@@ -47,8 +48,8 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun startMain() {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun startHome() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }
