@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.gallery.GalleryFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -45,32 +45,32 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/imageMainProfile"
+                        android:id="@+id/imageGalleryProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/profile" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/textMainId"
+                    android:id="@+id/textGalleryId"
                     style="@style/HomeProfileLightWhiteText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     app:layout_constraintBottom_toBottomOf="@+id/cardView"
                     app:layout_constraintStart_toEndOf="@+id/cardView"
-                    app:layout_constraintTop_toBottomOf="@+id/textMainName"
+                    app:layout_constraintTop_toBottomOf="@+id/textGalleryName"
                     tools:text="briandr" />
 
                 <TextView
-                    android:id="@+id/textMainName"
+                    android:id="@+id/textGalleryName"
                     style="@style/HomeProfileWhiteText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="0.1"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/textMainId"
+                    android:letterSpacing="0.1"
+                    app:layout_constraintBottom_toTopOf="@+id/textGalleryId"
                     app:layout_constraintStart_toEndOf="@+id/cardView"
                     app:layout_constraintTop_toTopOf="@+id/cardView"
                     app:layout_constraintVertical_chainStyle="packed"
@@ -89,7 +89,7 @@
                     android:textSize="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textMainId" />
+                    app:layout_constraintTop_toBottomOf="@+id/textGalleryId" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

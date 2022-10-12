@@ -1,52 +1,59 @@
-package org.sopt.sample.ui.main
+package org.sopt.sample.ui.main.gallery
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
-import org.sopt.sample.databinding.ActivityMainBinding
+import org.sopt.sample.databinding.FragmentGalleryBinding
 import org.sopt.sample.defaultSnackbar
 import org.sopt.sample.ui.auth.SignInActivity
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class GalleryFragment : Fragment() {
+    private var _binding : FragmentGalleryBinding? = null
+    private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 바인딩 초기화 에러가 발생했습니다." }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentGalleryBinding.inflate(layoutInflater)
 
         initText()
         clickLogout()
         clickGithub()
         clickInstagram()
+        return binding.root
     }
 
     private fun initText() {
         val sharedPref = MySharedPreferences()
-        sharedPref.init(this)
-        binding.textMainId.text = sharedPref.loginId
-        binding.textMainName.text = sharedPref.loginName
+        sharedPref.init(requireContext())
+        binding.textGalleryId.text = sharedPref.loginId
+        binding.textGalleryName.text = sharedPref.loginName
         binding.textMbti.text = sharedPref.loginMbti
     }
 
     private fun clickLogout() {
         binding.buttonLogout.setOnClickListener {
             val sharedPref = MySharedPreferences()
-            sharedPref.init(this)
+            sharedPref.init(requireContext())
             sharedPref.autoLogin = false
             sharedPref.loginName = null
+            sharedPref.loginId = null
             goToLogin()
         }
     }
 
     private fun goToLogin() {
-        val intent = Intent(this, SignInActivity::class.java)
+        val intent = Intent(requireContext(), SignInActivity::class.java)
         startActivity(intent)
-        finish()
+        requireActivity().finish()
     }
 
     private fun clickGithub() {
