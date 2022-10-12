@@ -1,11 +1,9 @@
 package org.sopt.sample.ui.main.home
 
-import org.sopt.sample.ui.main.home.InstagramData.Companion.CONTENT
-import org.sopt.sample.ui.main.home.InstagramData.Companion.TITLE
+abstract class InstagramData {
+    abstract val viewType: Int
 
-interface InstagramData{
-    val viewType : Int
-    companion object{
+    companion object {
         const val TITLE = 0
         const val CONTENT = 1
     }
@@ -13,12 +11,12 @@ interface InstagramData{
 
 data class InstagramTitle(
     override val viewType: Int = TITLE,
-    val title : String
-    ) : InstagramData
+    val title: String
+) : InstagramData()
 
 data class InstagramContent(
     override val viewType: Int = CONTENT,
-    val name : String,
-    val id : String
-    ) : InstagramData
+    val name: String,
+    val id: String
+) : InstagramData()
 
