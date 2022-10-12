@@ -1,4 +1,4 @@
-package org.sopt.sample.ui.main
+package org.sopt.sample.ui.main.camera
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
