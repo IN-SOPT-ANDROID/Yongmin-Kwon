@@ -13,8 +13,8 @@ class InstagramAdapter : RecyclerView.Adapter<InstagramViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstagramViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val titleBinding = ItemInstagramTitleBinding.inflate(layoutInflater)
-        val contentBinding = ItemInstagramContentBinding.inflate(layoutInflater)
+        val titleBinding = ItemInstagramTitleBinding.inflate(layoutInflater, parent, false)
+        val contentBinding = ItemInstagramContentBinding.inflate(layoutInflater, parent, false)
 
         return when (viewType) {
             TITLE -> InstagramTitleViewHolder(titleBinding)
