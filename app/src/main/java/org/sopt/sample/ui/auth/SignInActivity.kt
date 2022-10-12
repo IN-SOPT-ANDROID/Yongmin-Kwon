@@ -10,7 +10,7 @@ import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySignInBinding
 import org.sopt.sample.defaultSnackbar
-import org.sopt.sample.ui.main.MainActivity
+import org.sopt.sample.ui.main.HomeActivity
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
@@ -49,8 +49,8 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToMypage(){
-        val mainIntent = Intent(this, MainActivity::class.java)
+    private fun goToMypage() {
+        val mainIntent = Intent(this, HomeActivity::class.java)
         startActivity(mainIntent)
         finish()
     }
