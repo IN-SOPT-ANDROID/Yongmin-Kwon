@@ -12,7 +12,6 @@ import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySplashBinding
 import org.sopt.sample.ui.auth.SignInActivity
 import org.sopt.sample.ui.main.HomeActivity
-import org.sopt.sample.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
