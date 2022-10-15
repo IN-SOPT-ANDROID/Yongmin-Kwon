@@ -24,11 +24,7 @@ class InstagramAdapter : RecyclerView.Adapter<InstagramViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: InstagramViewHolder, position: Int) {
-        val item = instagramList[position]
-        when (holder) {
-            is InstagramTitleViewHolder -> holder.bind(item)
-            is InstagramContentViewHolder -> holder.bind(item)
-        }
+        holder.bind(instagramList[position])
     }
 
     override fun getItemCount(): Int = instagramList.size

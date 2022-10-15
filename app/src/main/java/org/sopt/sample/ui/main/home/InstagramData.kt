@@ -1,6 +1,6 @@
 package org.sopt.sample.ui.main.home
 
-abstract class InstagramData {
+sealed class InstagramData {
     abstract val viewType: Int
 
     companion object {
