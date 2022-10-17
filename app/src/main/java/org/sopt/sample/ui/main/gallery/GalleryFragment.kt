@@ -17,6 +17,7 @@ import org.sopt.sample.ui.auth.SignInActivity
 class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 바인딩 초기화 에러가 발생했습니다." }
+    private val sharedPref by lazy { MySharedPreferences(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +36,6 @@ class GalleryFragment : Fragment() {
     }
 
     private fun initText() {
-        val sharedPref = MySharedPreferences()
-        sharedPref.init(requireContext())
         binding.textGalleryId.text = sharedPref.loginId
         binding.textGalleryName.text = sharedPref.loginName
         binding.textMbti.text = sharedPref.loginMbti
@@ -44,11 +43,11 @@ class GalleryFragment : Fragment() {
 
     private fun clickLogout() {
         binding.buttonLogout.setOnClickListener {
-            val sharedPref = MySharedPreferences()
-            sharedPref.init(requireContext())
-            sharedPref.autoLogin = false
-            sharedPref.loginName = null
-            sharedPref.loginId = null
+            with(sharedPref) {
+                autoLogin = false
+                loginName = null
+                loginId = null
+            }
             goToLogin()
         }
     }
