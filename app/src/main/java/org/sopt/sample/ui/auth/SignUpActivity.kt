@@ -50,11 +50,12 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun storeInfoInLocal(id: String, pw: String, name: String, mbti: String) {
-        val sharedPref = MySharedPreferences(this)
-        sharedPref.loginId = id
-        sharedPref.loginPw = pw
-        sharedPref.loginName = name
-        sharedPref.loginMbti = mbti
+        MySharedPreferences(this).run {
+            loginId = id
+            loginPw = pw
+            loginName = name
+            loginMbti = mbti
+        }
     }
 
     private fun isSignUpValid(): Boolean {
