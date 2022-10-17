@@ -16,6 +16,7 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
     private val authChecking = AuthChecking()
+    private val sharedPref by lazy { MySharedPreferences(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +37,6 @@ class SignInActivity : AppCompatActivity() {
 
     private fun clickLogin() {
         binding.buttonLoginLogin.setOnClickListener {
-            val sharedPref = MySharedPreferences()
-            sharedPref.init(this)
             val id = sharedPref.loginId
             val pw = sharedPref.loginPw
             val inputId = binding.editLoginId.text.toString()
@@ -64,14 +63,16 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getResultFromSignUp(result: ActivityResult) {
         if (result.resultCode == RESULT_OK) {
-            binding.root.defaultSnackbar(R.string.succeedSignUp)
+            with(binding) {
+                root.defaultSnackbar(R.string.succeedSignUp)
+                editLoginId.setText(result.data?.getStringExtra("id"))
+                editLoginPw.setText(result.data?.getStringExtra("pw"))
+            }
         } else binding.root.defaultSnackbar(R.string.failSignUp)
     }
 
     private fun checkAutoLogin() {
         if (!binding.checkBoxAutoLogin.isChecked) return
-        val sharedPref = MySharedPreferences()
-        sharedPref.init(this)
         sharedPref.autoLogin = true
     }
 }

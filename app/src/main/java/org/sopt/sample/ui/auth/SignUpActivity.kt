@@ -41,15 +41,14 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun goBackToSignIn(id: String, pw: String) {
-        setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply{
+        setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply {
             putExtra("id", id)
             putExtra("pw", pw)
         })
     }
 
     private fun storeInfoInLocal(id: String, pw: String, name: String, mbti: String) {
-        val sharedPref = MySharedPreferences()
-        sharedPref.init(this)
+        val sharedPref = MySharedPreferences(this)
         sharedPref.loginId = id
         sharedPref.loginPw = pw
         sharedPref.loginName = name
