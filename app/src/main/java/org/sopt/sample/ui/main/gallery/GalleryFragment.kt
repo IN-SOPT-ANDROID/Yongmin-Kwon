@@ -18,6 +18,8 @@ class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 바인딩 초기화 에러가 발생했습니다." }
     private val sharedPref by lazy { MySharedPreferences(requireContext()) }
+    private val GITHUB = "github"
+    private val INSTAGRAM = "instagram"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,31 +60,38 @@ class GalleryFragment : Fragment() {
         requireActivity().finish()
     }
 
+    private fun clickLink(category: String) {
+        var link = ""
+        var title = ""
+        when (category) {
+            GITHUB -> {
+                link = "https://github.com/briandr97"
+                title = getString(R.string.github)
+            }
+            INSTAGRAM -> {
+                link = "https://www.instagram.com/k_dragonm/"
+                title = getString(R.string.instagram)
+            }
+        }
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+        val chooser = Intent.createChooser(intent, title)
+
+        try {
+            startActivity(chooser)
+        } catch (e: ActivityNotFoundException) {
+            binding.root.defaultSnackbar(R.string.noApp)
+        }
+    }
+
     private fun clickGithub() {
         binding.linkGithub.setOnClickListener {
-            val githubIntent: Intent =
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/briandr97"))
-
-            try {
-                startActivity(githubIntent)
-            } catch (e: ActivityNotFoundException) {
-                binding.root.defaultSnackbar(R.string.noApp)
-            }
+            clickLink(GITHUB)
         }
     }
 
     private fun clickInstagram() {
         binding.linkInstagram.setOnClickListener {
-            val instaIntent =
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/k_dragonm/"))
-            val title = getString(R.string.instagram)
-            val chooser = Intent.createChooser(instaIntent, title)
-
-            try {
-                startActivity(chooser)
-            } catch (e: ActivityNotFoundException) {
-                binding.root.defaultSnackbar(R.string.noApp)
-            }
+            clickLink(INSTAGRAM)
         }
     }
 }
