@@ -65,8 +65,8 @@ class SignInActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             with(binding) {
                 root.defaultSnackbar(R.string.succeedSignUp)
-                editLoginId.setText(result.data?.getStringExtra("id"))
-                editLoginPw.setText(result.data?.getStringExtra("pw"))
+                editLoginId.setText(result.data?.getStringExtra(ID))
+                editLoginPw.setText(result.data?.getStringExtra(PW))
             }
         } else binding.root.defaultSnackbar(R.string.failSignUp)
     }
@@ -74,5 +74,10 @@ class SignInActivity : AppCompatActivity() {
     private fun checkAutoLogin() {
         if (!binding.checkBoxAutoLogin.isChecked) return
         sharedPref.autoLogin = true
+    }
+
+    companion object{
+        const val ID = "id"
+        const val PW = "pw"
     }
 }

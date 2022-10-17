@@ -10,6 +10,8 @@ import org.sopt.sample.shortSnackbar
 import org.sopt.sample.ui.auth.AuthChecking.Companion.CORRECT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.SHORT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.STRANGE
+import org.sopt.sample.ui.auth.SignInActivity.Companion.ID
+import org.sopt.sample.ui.auth.SignInActivity.Companion.PW
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -42,8 +44,8 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun goBackToSignIn(id: String, pw: String) {
         setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply {
-            putExtra("id", id)
-            putExtra("pw", pw)
+            putExtra(ID, id)
+            putExtra(PW, pw)
         })
     }
 
