@@ -41,10 +41,11 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun goBackToSignIn(id: String, pw: String) {
-        val intent = Intent(this, SignInActivity::class.java)
-        intent.putExtra("id", id)
-        intent.putExtra("pw", pw)
-        setResult(RESULT_OK, intent)
+        Intent(this, SignInActivity::class.java).apply{
+            putExtra("id", id)
+            putExtra("pw", pw)
+            setResult(RESULT_OK, this)
+        }
     }
 
     private fun storeInfoInLocal(id: String, pw: String, name: String, mbti: String) {
