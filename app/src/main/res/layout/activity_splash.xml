@@ -10,19 +10,17 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/insopt"
         android:scaleType="fitXY"
-        tools:layout_editor_absoluteX="-204dp"
-        tools:layout_editor_absoluteY="27dp" />
+        app:srcCompat="@drawable/insopt" />
 
     <TextView
         android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sebang_gothic"
         android:letterSpacing="0.1"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:fontFamily="@font/sebang_gothic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

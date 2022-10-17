@@ -29,8 +29,7 @@
                 android:background="@drawable/rect_radius_20"
                 android:backgroundTint="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:layout_editor_absoluteX="20dp">
+                app:layout_constraintVertical_chainStyle="packed">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
@@ -98,8 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                app:layout_constraintTop_toBottomOf="@+id/layoutTop"
-                tools:layout_editor_absoluteX="20dp">
+                app:layout_constraintTop_toBottomOf="@+id/layoutTop">
 
                 <TextView
                     android:id="@+id/textMyInfo"
@@ -185,8 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                app:layout_constraintTop_toBottomOf="@+id/layoutMyInfo"
-                tools:layout_editor_absoluteX="20dp">
+                app:layout_constraintTop_toBottomOf="@+id/layoutMyInfo">
 
                 <TextView
                     android:id="@+id/textScholarship"
@@ -232,8 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                app:layout_constraintTop_toBottomOf="@+id/layoutScholarship"
-                tools:layout_editor_absoluteX="20dp">
+                app:layout_constraintTop_toBottomOf="@+id/layoutScholarship">
 
                 <TextView
                     android:id="@+id/textWebSite"
