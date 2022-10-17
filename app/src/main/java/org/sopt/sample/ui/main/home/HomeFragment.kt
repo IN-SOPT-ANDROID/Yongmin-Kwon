@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = InstagramAdapter()
+        adapter = InstagramAdapter(requireContext())
         binding.recyclerViewHome.adapter = adapter
     }
 
@@ -40,13 +40,12 @@ class HomeFragment : Fragment() {
             InstagramContent(name = "김지영", id = "@zzi.__.0"),
             InstagramContent(name = "김우남", id = "unam_0107"),
             InstagramContent(name = "김세훈", id = "@s2ehun"),
-            InstagramContent(name = "이현우", id = "@I2hyunwoo"),
+            InstagramContent(name = "이현우", id = "@l2hyunwoo"),
             InstagramContent(name = "강원용", id = "@wony._.k"),
             InstagramContent(name = "최영진", id = "@oznnni"),
             InstagramContent(name = "이영주", id = "@2zerozu")
         )
-        adapter.instagramList.addAll(list)
-        adapter.notifyDataSetChanged()
+        adapter.updateList(list)
     }
 
     override fun onDestroyView() {

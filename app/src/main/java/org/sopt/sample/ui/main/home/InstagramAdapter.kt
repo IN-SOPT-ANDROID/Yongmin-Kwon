@@ -1,5 +1,6 @@
 package org.sopt.sample.ui.main.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,17 +9,20 @@ import org.sopt.sample.databinding.ItemInstagramTitleBinding
 import org.sopt.sample.ui.main.home.InstagramData.Companion.CONTENT
 import org.sopt.sample.ui.main.home.InstagramData.Companion.TITLE
 
-class InstagramAdapter : RecyclerView.Adapter<InstagramViewHolder>() {
-    val instagramList = mutableListOf<InstagramData>()
+class InstagramAdapter(context: Context) : RecyclerView.Adapter<InstagramViewHolder>() {
+    private val instagramList = mutableListOf<InstagramData>()
+    private val layoutInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstagramViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val titleBinding = ItemInstagramTitleBinding.inflate(layoutInflater, parent, false)
-        val contentBinding = ItemInstagramContentBinding.inflate(layoutInflater, parent, false)
-
         return when (viewType) {
-            TITLE -> InstagramTitleViewHolder(titleBinding)
-            CONTENT -> InstagramContentViewHolder(contentBinding)
+            TITLE -> {
+                val titleBinding = ItemInstagramTitleBinding.inflate(layoutInflater, parent, false)
+                InstagramTitleViewHolder(titleBinding)
+            }
+            CONTENT -> {
+                val contentBinding = ItemInstagramContentBinding.inflate(layoutInflater, parent, false)
+                InstagramContentViewHolder(contentBinding)
+            }
             else -> throw IllegalArgumentException()
         }
     }
@@ -31,5 +35,10 @@ class InstagramAdapter : RecyclerView.Adapter<InstagramViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return instagramList[position].viewType
+    }
+
+    fun updateList(list: List<InstagramData>) {
+        instagramList.addAll(list)
+        notifyDataSetChanged()
     }
 }
