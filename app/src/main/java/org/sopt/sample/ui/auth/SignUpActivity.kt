@@ -10,6 +10,8 @@ import org.sopt.sample.shortSnackbar
 import org.sopt.sample.ui.auth.AuthChecking.Companion.CORRECT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.SHORT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.STRANGE
+import org.sopt.sample.ui.auth.SignInActivity.Companion.ID
+import org.sopt.sample.ui.auth.SignInActivity.Companion.PW
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -41,19 +43,19 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun goBackToSignIn(id: String, pw: String) {
-        val intent = Intent(this, SignInActivity::class.java)
-        intent.putExtra("id", id)
-        intent.putExtra("pw", pw)
-        setResult(RESULT_OK, intent)
+        setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply {
+            putExtra(ID, id)
+            putExtra(PW, pw)
+        })
     }
 
     private fun storeInfoInLocal(id: String, pw: String, name: String, mbti: String) {
-        val sharedPref = MySharedPreferences()
-        sharedPref.init(this)
-        sharedPref.loginId = id
-        sharedPref.loginPw = pw
-        sharedPref.loginName = name
-        sharedPref.loginMbti = mbti
+        MySharedPreferences(this).run {
+            loginId = id
+            loginPw = pw
+            loginName = name
+            loginMbti = mbti
+        }
     }
 
     private fun isSignUpValid(): Boolean {

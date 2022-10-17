@@ -10,12 +10,13 @@ import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySignInBinding
 import org.sopt.sample.defaultSnackbar
-import org.sopt.sample.ui.main.MainActivity
+import org.sopt.sample.ui.main.HomeActivity
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
     private val authChecking = AuthChecking()
+    private val sharedPref by lazy { MySharedPreferences(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +37,6 @@ class SignInActivity : AppCompatActivity() {
 
     private fun clickLogin() {
         binding.buttonLoginLogin.setOnClickListener {
-            val sharedPref = MySharedPreferences()
-            sharedPref.init(this)
             val id = sharedPref.loginId
             val pw = sharedPref.loginPw
             val inputId = binding.editLoginId.text.toString()
@@ -45,12 +44,12 @@ class SignInActivity : AppCompatActivity() {
             if (!authChecking.isSignInValid(this, id, pw, inputId, inputPw))
                 return@setOnClickListener
             checkAutoLogin()
-            goToMypage()
+            goToHome()
         }
     }
 
-    private fun goToMypage(){
-        val mainIntent = Intent(this, MainActivity::class.java)
+    private fun goToHome() {
+        val mainIntent = Intent(this, HomeActivity::class.java)
         startActivity(mainIntent)
         finish()
     }
@@ -64,14 +63,21 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getResultFromSignUp(result: ActivityResult) {
         if (result.resultCode == RESULT_OK) {
-            binding.root.defaultSnackbar(R.string.succeedSignUp)
+            with(binding) {
+                root.defaultSnackbar(R.string.succeedSignUp)
+                editLoginId.setText(result.data?.getStringExtra(ID))
+                editLoginPw.setText(result.data?.getStringExtra(PW))
+            }
         } else binding.root.defaultSnackbar(R.string.failSignUp)
     }
 
     private fun checkAutoLogin() {
         if (!binding.checkBoxAutoLogin.isChecked) return
-        val sharedPref = MySharedPreferences()
-        sharedPref.init(this)
         sharedPref.autoLogin = true
+    }
+
+    companion object{
+        const val ID = "id"
+        const val PW = "pw"
     }
 }
