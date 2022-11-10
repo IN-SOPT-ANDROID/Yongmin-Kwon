@@ -6,16 +6,27 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
 object ServiceFactory {
-    val retrofit: Retrofit by lazy {
+    private const val AUTH_BASE_URL = "http://3.39.169.52:3000/"
+    private const val REQRES_BASE_URL = "https://reqres.in/api/"
+
+    val retrofitAuth: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("http://3.39.169.52:3000/")
+            .baseUrl(AUTH_BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
 
-    inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
+    val retrofitReqres: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(REQRES_BASE_URL)
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .build()
+    }
+
+    //inline fun <reified T> create(): T = retrofitAuth.create<T>(T::class.java)
 }
 
-object ServicePool{
-    val authService = ServiceFactory.create<AuthService>()
+object ServicePool {
+    val authService: AuthService = ServiceFactory.retrofitAuth.create(AuthService::class.java)
+    val reqresService : ReqresService = ServiceFactory.retrofitReqres.create(ReqresService::class.java)
 }
