@@ -5,7 +5,10 @@ import org.sopt.sample.R
 import org.sopt.sample.shortToast
 
 class AuthChecking {
-    fun isSignUpIdValid(id: String): Boolean = (id.length in 6..10)
+    fun isSignUpEmailValid(email: String): Boolean {
+        return if (email.isEmpty()) false
+        else android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 
     fun isSignUpPwValid(pw: String): Boolean = (pw.length in 8..12)
 

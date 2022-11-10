@@ -5,13 +5,20 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
+import org.sopt.sample.data.remote.ServicePool
+import org.sopt.sample.data.remote.entity.RequestSignUpDTO
+import org.sopt.sample.data.remote.entity.ResponseSignUpDTO
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.shortSnackbar
+import org.sopt.sample.shortToast
 import org.sopt.sample.ui.auth.AuthChecking.Companion.CORRECT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.SHORT
 import org.sopt.sample.ui.auth.AuthChecking.Companion.STRANGE
-import org.sopt.sample.ui.auth.SignInActivity.Companion.ID
+import org.sopt.sample.ui.auth.SignInActivity.Companion.EMAIL
 import org.sopt.sample.ui.auth.SignInActivity.Companion.PW
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -32,29 +39,51 @@ class SignUpActivity : AppCompatActivity() {
     private fun clickSignUp() {
         binding.buttonSignUpSignUp.setOnClickListener {
             if (!isSignUpValid()) return@setOnClickListener
-            val id = binding.editSignUpId.text.toString()
-            val pw = binding.editSignUpPw.text.toString()
-            val name = binding.editSignUpName.text.toString()
-            val mbti = binding.editSignUpMbti.text.toString()
-            storeInfoInLocal(id, pw, name, mbti)
-            goBackToSignIn(id, pw)
-            finish()
+            val signUpInfo = SignUpInfo(
+                binding.editSignUpEmail.text.toString(),
+                binding.editSignUpPw.text.toString(),
+                binding.editSignUpName.text.toString(),
+                binding.editSignUpMbti.text.toString()
+            )
+            initSignUpNetwork(signUpInfo)
         }
     }
 
-    private fun goBackToSignIn(id: String, pw: String) {
+    private fun initSignUpNetwork(signUpInfo: SignUpInfo) {
+        val signUpService = ServicePool.authService
+        signUpService
+            .postSignUp(RequestSignUpDTO(signUpInfo.email, signUpInfo.pw, signUpInfo.name))
+            .enqueue(
+                object : Callback<ResponseSignUpDTO> {
+                    override fun onResponse(
+                        call: Call<ResponseSignUpDTO>,
+                        response: Response<ResponseSignUpDTO>
+                    ) {
+                        if (response.isSuccessful) {
+                            storeInfoInLocal(signUpInfo)
+                            goBackToSignIn(signUpInfo)
+                        } else shortToast(R.string.serverConnectResponseError)
+                    }
+
+                    override fun onFailure(call: Call<ResponseSignUpDTO>, t: Throwable) {
+                        shortToast(R.string.serverConnectOnFailure)
+                    }
+                }
+            )
+    }
+
+    private fun goBackToSignIn(signUpInfo: SignUpInfo) {
         setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply {
             putExtra(EMAIL, signUpInfo.email)
             putExtra(PW, signUpInfo.pw)
         })
+        finish()
     }
 
-    private fun storeInfoInLocal(id: String, pw: String, name: String, mbti: String) {
+    private fun storeInfoInLocal(signUpInfo: SignUpInfo) {
         MySharedPreferences(this).run {
-            loginId = id
-            loginPw = pw
-            loginName = name
-            loginMbti = mbti
+            loginName = signUpInfo.name
+            loginMbti = signUpInfo.mbti
         }
     }
 

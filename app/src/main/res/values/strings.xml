@@ -45,4 +45,7 @@
     <string name="search">search</string>
     <string name="gallery">gallery</string>
     <string name="instagram_followers">Instagram Followers</string>
+
+    <string name="serverConnectOnFailure">서버와 통신에 실패하였습니다.</string>
+    <string name="serverConnectResponseError">서버와 통신은 성공했으나 제대로된 응답값을 받지 못했습니다.</string>
 </resources>
