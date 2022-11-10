@@ -18,12 +18,24 @@ class ReqresFragment : Fragment() {
     private var _binding: FragmentReqresBinding? = null
     private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 바인딩 초기화 에러가 발생했습니다." }
 
+    private val reqresAdapter: ReqresAdapter by lazy { ReqresAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReqresBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+        initReqresNetwork()
+    }
+
+    private fun initAdapter() {
+        binding.recyclerviewReqres.adapter = reqresAdapter
     }
 
     private fun initReqresNetwork() {
@@ -35,7 +47,7 @@ class ReqresFragment : Fragment() {
                     response: Response<ResponseReqresDTO>
                 ) {
                     if (response.isSuccessful) {
-                        //TODO
+                        reqresAdapter.submitList(response.body()?.data)
                     } else requireContext().shortToast(R.string.serverConnectResponseError)
                 }
 
