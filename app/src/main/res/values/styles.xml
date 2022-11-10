@@ -48,4 +48,9 @@
         <item name="android:textSize">16dp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
+    
+    <style name="ReqresItalicText">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
 </resources>
