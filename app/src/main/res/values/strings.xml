@@ -14,7 +14,8 @@
     <string name="failSignUp">회원가입에 실패했습니다</string>
     <string name="succeedSignUp">회원가입에 성공했습니다</string>
     <string name="succeedSignIn">로그인에 성공했습니다</string>
-    <string name="checkId">아이디를 확인하세요</string>
+    <string name="failSignIn">로그인에 실패했습니다</string>
+    <string name="checkEmail">이메일을 확인하세요</string>
     <string name="checkPw">비밀번호를 확인하세요</string>
     <string name="checkName">이름을 확인하세요</string>
     <string name="checkIdPw">아이디와 비밀번호를 확인하세요</string>
