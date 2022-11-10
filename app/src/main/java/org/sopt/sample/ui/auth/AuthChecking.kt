@@ -8,7 +8,7 @@ class AuthChecking {
 
     fun isSignUpPwValid(pw: String): Boolean = (pw.length in 8..12)
 
-    fun isSignUpNameValid(name : String) : Boolean = (name.length in 1..3)
+    fun isSignUpNameValid(name: String): Boolean = (name.length in 1..3)
 
     fun isSignUpMbtiValid(mbti: String): Int {
         if (mbti.length < 4) return SHORT
