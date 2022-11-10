@@ -51,6 +51,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.5.3"
     implementation "androidx.activity:activity-ktx:1.5.1"
 
+    //레트로핏
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
@@ -59,6 +60,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
 
+    //글라이드
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    //로티 뷰
+    implementation "com.airbnb.android:lottie:5.2.0"
 }
