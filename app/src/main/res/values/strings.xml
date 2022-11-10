@@ -6,6 +6,7 @@
     <string name="enterPw">비밀번호를 입력하세요</string>
     <string name="enterId">아이디를 입력하세요</string>
     <string name="id">ID</string>
+    <string name="email">E-MAIL</string>
     <string name="password">PASSWORD</string>
 
     <string name="mbti">MBTI</string>
@@ -20,7 +21,7 @@
     <string name="mbtiIsStrange">없는 MBTI입니다</string>
     <string name="mbtiIsShort">MBTI가 짧습니다</string>
     <string name="needSignUp">회원가입이 필요합니다</string>
-    <string name="idDescription">ID는 6~10글자로 작성해주세요</string>
+    <string name="idDescription">E-MAIL을 작성해주세요</string>
     <string name="pwDescription">PW는 8~12글자로 작성해주세요</string>
 
     <string name="myPageName">이름 : %1$s</string>

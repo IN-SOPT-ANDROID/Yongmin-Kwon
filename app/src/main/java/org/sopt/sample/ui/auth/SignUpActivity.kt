@@ -44,8 +44,8 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun goBackToSignIn(id: String, pw: String) {
         setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply {
-            putExtra(ID, id)
-            putExtra(PW, pw)
+            putExtra(EMAIL, signUpInfo.email)
+            putExtra(PW, signUpInfo.pw)
         })
     }
 
@@ -59,13 +59,13 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isSignUpValid(): Boolean {
-        val id = binding.editSignUpId.text.toString()
+        val email = binding.editSignUpEmail.text.toString()
         val pw = binding.editSignUpPw.text.toString()
         val name = binding.editSignUpName.text.toString()
         val mbti = binding.editSignUpMbti.text.toString()
 
-        if (!authChecking.isSignUpIdValid(id)) {
-            binding.buttonSignUpSignUp.shortSnackbar(R.string.checkId)
+        if (!authChecking.isSignUpEmailValid(email)) {
+            binding.buttonSignUpSignUp.shortSnackbar(R.string.checkEmail)
             return false
         }
         if (!authChecking.isSignUpPwValid(pw)) {

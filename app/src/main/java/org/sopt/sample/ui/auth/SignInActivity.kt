@@ -65,7 +65,7 @@ class SignInActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             with(binding) {
                 root.defaultSnackbar(R.string.succeedSignUp)
-                editLoginId.setText(result.data?.getStringExtra(ID))
+                editLoginId.setText(result.data?.getStringExtra(EMAIL))
                 editLoginPw.setText(result.data?.getStringExtra(PW))
             }
         } else binding.root.defaultSnackbar(R.string.failSignUp)
