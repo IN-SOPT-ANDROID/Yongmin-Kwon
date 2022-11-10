@@ -9,7 +9,7 @@ import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDTO
 import org.sopt.sample.databinding.ItemReqresBinding
 
 class ReqresAdapter : ListAdapter<ResponseReqresDTO.Data, ReqresAdapter.ReqresViewHolder>(ReqresComparator()) {
-    class ReqresViewHolder(binding: ItemReqresBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ReqresViewHolder(private val binding: ItemReqresBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ResponseReqresDTO.Data) {
             //TODO
         }
