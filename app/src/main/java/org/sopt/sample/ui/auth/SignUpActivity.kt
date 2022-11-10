@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
 import org.sopt.sample.data.remote.ServicePool
-import org.sopt.sample.data.remote.entity.RequestSignUpDTO
-import org.sopt.sample.data.remote.entity.ResponseSignUpDTO
+import org.sopt.sample.data.remote.entity.auth.RequestSignUpDTO
+import org.sopt.sample.data.remote.entity.auth.ResponseSignUpDTO
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.shortSnackbar
 import org.sopt.sample.shortToast
