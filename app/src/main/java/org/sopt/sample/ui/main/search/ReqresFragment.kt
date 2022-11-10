@@ -38,6 +38,10 @@ class ReqresFragment : Fragment() {
         binding.recyclerviewReqres.adapter = reqresAdapter
     }
 
+    private fun finishLoading() {
+        binding.loadingLottie.visibility = View.GONE
+    }
+
     private fun initReqresNetwork() {
         val reqresService = ServicePool.reqresService
         reqresService.getUsers(1).enqueue(
@@ -47,6 +51,7 @@ class ReqresFragment : Fragment() {
                     response: Response<ResponseReqresDTO>
                 ) {
                     if (response.isSuccessful) {
+                        finishLoading()
                         reqresAdapter.submitList(response.body()?.data)
                     } else requireContext().shortToast(R.string.serverConnectResponseError)
                 }
