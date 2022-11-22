@@ -5,21 +5,18 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
-import org.sopt.sample.data.remote.ServicePool
-import org.sopt.sample.data.remote.entity.auth.RequestSignInDTO
-import org.sopt.sample.data.remote.entity.auth.ResponseSignInDTO
 import org.sopt.sample.databinding.ActivitySignInBinding
 import org.sopt.sample.defaultSnackbar
-import org.sopt.sample.shortToast
+import org.sopt.sample.shortToastString
+import org.sopt.sample.ui.auth.viewmodel.SignInViewModel
 import org.sopt.sample.ui.main.HomeActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignInActivity : AppCompatActivity() {
+    private val signInViewModel: SignInViewModel by viewModels()
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
     private val sharedPref by lazy { MySharedPreferences(this) }
@@ -32,6 +29,7 @@ class SignInActivity : AppCompatActivity() {
         launchSignUpResult()
         clickSignUp()
         clickLogin()
+        observeSignInResult()
     }
 
     private fun clickSignUp() {
@@ -45,7 +43,7 @@ class SignInActivity : AppCompatActivity() {
         binding.buttonLoginLogin.setOnClickListener {
             val email = binding.editLoginId.text.toString()
             val pw = binding.editLoginPw.text.toString()
-            checkLogin(email, pw)
+            signInViewModel.signIn(email, pw)
         }
     }
 
@@ -72,31 +70,23 @@ class SignInActivity : AppCompatActivity() {
         } else binding.root.defaultSnackbar(R.string.failSignUp)
     }
 
+    private fun observeSignInResult() {
+        signInViewModel.signInResult.observe(this) {
+            if (it == ServerConnectResult.SUCCESS) {
+                signInSucceed()
+            }
+            shortToastString(it.message)
+        }
+    }
+
+    private fun signInSucceed() {
+        checkAutoLogin()
+        goToHome()
+    }
+
     private fun checkAutoLogin() {
         if (!binding.checkBoxAutoLogin.isChecked) return
         sharedPref.autoLogin = true
-    }
-
-    private fun checkLogin(email: String, pw: String) {
-        val loginService = ServicePool.authService //ServiceFactory.retrofit.create<AuthService>()
-        loginService
-            .postSignIn(RequestSignInDTO(email, pw))
-            .enqueue(object : Callback<ResponseSignInDTO> {
-                override fun onResponse(
-                    call: Call<ResponseSignInDTO>,
-                    response: Response<ResponseSignInDTO>
-                ) {
-                    if (response.isSuccessful) {
-                        checkAutoLogin()
-                        goToHome()
-                        shortToast(R.string.succeedSignIn)
-                    } else shortToast(R.string.failSignIn)
-                }
-
-                override fun onFailure(call: Call<ResponseSignInDTO>, t: Throwable) {
-                    shortToast(R.string.failSignIn)
-                }
-            })
     }
 
     companion object {
