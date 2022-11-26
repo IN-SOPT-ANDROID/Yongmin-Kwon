@@ -73,10 +73,13 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun goBackToSignIn(signUpInfo: SignUpInfo) {
-        setResult(RESULT_OK, Intent(this, SignInActivity::class.java).apply {
-            putExtra(EMAIL, signUpInfo.email)
-            putExtra(PW, signUpInfo.pw)
-        })
+        setResult(
+            RESULT_OK,
+            Intent(this, SignInActivity::class.java).apply {
+                putExtra(EMAIL, signUpInfo.email)
+                putExtra(PW, signUpInfo.pw)
+            }
+        )
         finish()
     }
 

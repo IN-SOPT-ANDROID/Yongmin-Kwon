@@ -1,6 +1,17 @@
 package org.sopt.sample.ui.auth
 
 class AuthChecking {
+
+    fun validateId(id: String) {
+    }
+
+    private fun haveNumber(input: String): Boolean {
+        if (input.none { Character.isDigit(it) }) {
+            return false
+        }
+        return true
+    }
+
     fun isSignUpEmailValid(email: String): Boolean {
         return if (email.isEmpty()) false
         else android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
