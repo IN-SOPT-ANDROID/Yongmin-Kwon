@@ -1,15 +1,14 @@
 package org.sopt.sample.ui.main.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.sopt.sample.R
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDTO
 import org.sopt.sample.databinding.FragmentReqresBinding
-import org.sopt.sample.shortToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +20,8 @@ class ReqresFragment : Fragment() {
     private val reqresAdapter: ReqresAdapter by lazy { ReqresAdapter() }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReqresBinding.inflate(layoutInflater)
@@ -53,13 +53,12 @@ class ReqresFragment : Fragment() {
                     if (response.isSuccessful) {
                         finishLoading()
                         reqresAdapter.submitList(response.body()?.data)
-                    } else requireContext().shortToast(R.string.serverConnectResponseError)
+                    } else Log.e("ReqresFragment", "서버 통신 onResponse but not successful")
                 }
 
                 override fun onFailure(call: Call<ResponseReqresDTO>, t: Throwable) {
-                    requireContext().shortToast(R.string.serverConnectOnFailure)
+                    Log.e("ReqresFragment", "서버 통신 onFailure")
                 }
-
             }
         )
     }
