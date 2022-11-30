@@ -1,160 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.auth.SignUpActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="org.sopt.sample.ui.auth.viewmodel.SignUpViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="org.sopt.sample.ui.auth.EditTextUiState" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutTop"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/buttonBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/back_arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP"
-            android:textColor="@color/black"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@id/buttonSignUpSignUp"
-        app:layout_constraintTop_toBottomOf="@id/layoutTop">
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.SignUpActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutTop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
+            android:layout_height="56dp"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textSignUpEmail"
-                style="@style/LoginTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@string/email"
+            <ImageView
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editSignUpEmail"
-                style="@style/LoginEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:hint="@string/idDescription"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSignUpEmail" />
-
             <TextView
-                android:id="@+id/textSignUpPw"
-                style="@style/LoginTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@string/password"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editSignUpEmail" />
-
-            <EditText
-                android:id="@+id/editSignUpPw"
-                style="@style/LoginEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:hint="@string/pwDescription"
-                android:inputType="textPassword"
+                android:text="SIGN UP"
+                android:textColor="@color/black"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSignUpPw" />
-
-            <TextView
-                android:id="@+id/textSignUpName"
-                style="@style/LoginTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@string/name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editSignUpPw" />
-
-            <EditText
-                android:id="@+id/editSignUpName"
-                style="@style/LoginEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:hint="@string/enterName"
-                android:inputType="textCapCharacters"
-                android:maxLength="3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSignUpName" />
-
-            <TextView
-                android:id="@+id/textSignUpMbti"
-                style="@style/LoginTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@string/mbti"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editSignUpName" />
-
-            <EditText
-                android:id="@+id/editSignUpMbti"
-                style="@style/LoginEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:hint="@string/enterMbti"
-                android:inputType="textCapCharacters"
-                android:maxLength="4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSignUpMbti" />
-
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSignUpSignUp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/black"
-        android:letterSpacing="0.1"
-        android:text="@string/signUp"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/buttonSignUpSignUp"
+            app:layout_constraintTop_toBottomOf="@id/layoutTop">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textSignUpEmail"
+                    style="@style/LoginTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editSignUpEmail"
+                    style="@style/LoginEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@{viewModel.idValidation == EditTextUiState.INCORRECT ? @color/red : @color/black}"
+                    android:hint="@string/idDescription"
+                    android:maxLength="10"
+                    android:text="@={viewModel.id}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSignUpEmail" />
+
+                <TextView
+                    android:id="@+id/textIdValidation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{`아이디` + EditTextUiState.FORM_INVALIDATE}"
+                    android:textColor="@color/red"
+                    android:textSize="10dp"
+                    android:textStyle="italic"
+                    android:visibility="@{viewModel.idValidation == EditTextUiState.INCORRECT ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@+id/editSignUpEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpEmail" />
+
+                <TextView
+                    android:id="@+id/textSignUpPw"
+                    style="@style/LoginTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/password"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpEmail" />
+
+                <EditText
+                    android:id="@+id/editSignUpPw"
+                    style="@style/LoginEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@{viewModel.pwValidation == EditTextUiState.INCORRECT ? @color/red : @color/black}"
+                    android:hint="@string/pwDescription"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:text="@={viewModel.pw}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSignUpPw" />
+
+                <TextView
+                    android:id="@+id/textPwValidation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{`비밀번호` + EditTextUiState.FORM_INVALIDATE}"
+                    android:textColor="@color/red"
+                    android:textSize="10dp"
+                    android:textStyle="italic"
+                    android:visibility="@{viewModel.pwValidation == EditTextUiState.INCORRECT ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@+id/editSignUpPw"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpPw" />
+
+                <TextView
+                    android:id="@+id/textSignUpName"
+                    style="@style/LoginTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpPw" />
+
+                <EditText
+                    android:id="@+id/editSignUpName"
+                    style="@style/LoginEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@{viewModel.nameValidation == EditTextUiState.INCORRECT ? @color/red : @color/black}"
+                    android:hint="@string/enterName"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="4"
+                    android:text="@={viewModel.name}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSignUpName" />
+
+                <TextView
+                    android:id="@+id/textNameValidation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{`이름` + EditTextUiState.FORM_INVALIDATE}"
+                    android:textColor="@color/red"
+                    android:textSize="10dp"
+                    android:textStyle="italic"
+                    android:visibility="@{viewModel.nameValidation == EditTextUiState.INCORRECT ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@+id/editSignUpName"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpName" />
+
+                <TextView
+                    android:id="@+id/textSignUpMbti"
+                    style="@style/LoginTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/mbti"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpName" />
+
+                <EditText
+                    android:id="@+id/editSignUpMbti"
+                    style="@style/LoginEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@{viewModel.mbtiValidation == EditTextUiState.INCORRECT ? @color/red : @color/black}"
+                    android:hint="@string/enterMbti"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="4"
+                    android:text="@={viewModel.mbti}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSignUpMbti" />
+
+                <TextView
+                    android:id="@+id/textMbtiValidation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:text="@{`MBTI` + EditTextUiState.FORM_INVALIDATE}"
+                    android:textColor="@color/red"
+                    android:textSize="10dp"
+                    android:textStyle="italic"
+                    android:visibility="@{viewModel.mbtiValidation == EditTextUiState.INCORRECT ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@+id/editSignUpMbti"
+                    app:layout_constraintTop_toBottomOf="@+id/editSignUpMbti" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSignUpSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="@{viewModel.buttonValidation}"
+            android:background="@{viewModel.buttonValidation ? @color/black : @color/lightGray}"
+            android:letterSpacing="0.1"
+            android:text="@string/signUp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
