@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="org.sopt.sample.ui.auth.viewmodel.SignInViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,7 +52,6 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:hint="@string/enterId"
-            android:text="@={viewModel.id}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textLoginId" />
@@ -69,7 +61,7 @@
             style="@style/LoginTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:text="@string/password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editLoginId" />
@@ -81,15 +73,15 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:hint="@string/enterPw"
-            android:text="@={viewModel.pw}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textLoginPw" />
 
+
         <androidx.constraintlayout.helper.widget.Flow
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             app:constraint_referenced_ids="buttonLoginLogin,buttonLoginSignUp"
             app:flow_horizontalGap="12dp"
             app:layout_constraintEnd_toEndOf="parent"

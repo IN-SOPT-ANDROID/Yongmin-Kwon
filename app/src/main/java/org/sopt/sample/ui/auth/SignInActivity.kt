@@ -26,9 +26,6 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.viewModel = signInViewModel
-        binding.lifecycleOwner = this
-
         launchSignUpResult()
         clickSignUp()
         clickLogin()
