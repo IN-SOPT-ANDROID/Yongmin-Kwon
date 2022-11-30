@@ -8,6 +8,7 @@ import org.sopt.sample.data.remote.entity.auth.RequestSignUpDTO
 import org.sopt.sample.ui.auth.AuthChecking
 import org.sopt.sample.ui.auth.EditTextUiState
 import org.sopt.sample.ui.auth.SignUpInfo
+import org.sopt.sample.util.addSources
 import retrofit2.HttpException
 import retrofit2.await
 
@@ -36,17 +37,8 @@ class SignUpViewModel : ViewModel() {
     }
 
     val buttonValidation = MediatorLiveData<Boolean>().apply {
-        addSource(idValidation) {
-            this.value = isButtonActive()
-        }
-        addSource(pwValidation) {
-            this.value = isButtonActive()
-        }
-        addSource(nameValidation) {
-            this.value = isButtonActive()
-        }
-        addSource(mbtiValidation) {
-            this.value = isButtonActive()
+        addSources(listOf(idValidation, pwValidation, nameValidation, mbtiValidation)) {
+            isButtonActive()
         }
     }
 
