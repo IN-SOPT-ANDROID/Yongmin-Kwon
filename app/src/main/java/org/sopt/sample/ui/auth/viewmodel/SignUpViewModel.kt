@@ -1,20 +1,15 @@
 package org.sopt.sample.ui.auth.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.data.remote.entity.auth.RequestSignUpDTO
-import org.sopt.sample.data.remote.entity.auth.ResponseSignUpDTO
 import org.sopt.sample.ui.auth.AuthChecking
 import org.sopt.sample.ui.auth.EditTextUiState
 import org.sopt.sample.ui.auth.SignUpInfo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.HttpException
+import retrofit2.await
 
 class SignUpViewModel : ViewModel() {
     private val authChecking = AuthChecking()
@@ -66,25 +61,20 @@ class SignUpViewModel : ViewModel() {
 
     fun signUp(signUpInfo: SignUpInfo) {
         val signUpService = ServicePool.authService
-        signUpService
-            .postSignUp(RequestSignUpDTO(signUpInfo.email, signUpInfo.pw, signUpInfo.name))
-            .enqueue(
-                object : Callback<ResponseSignUpDTO> {
-                    override fun onResponse(
-                        call: Call<ResponseSignUpDTO>,
-                        response: Response<ResponseSignUpDTO>
-                    ) {
-                        if (response.isSuccessful) {
-                            _signUpResult.value = signUpInfo
-                        } else {
-                            Log.e("SignUpViewModel", "서버통신 onResponse but not successful")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ResponseSignUpDTO>, t: Throwable) {
-                        Log.e("SignUpViewModel", "서버통신 onFailure")
-                    }
+        viewModelScope.launch {
+            kotlin.runCatching {
+                signUpService
+                    .postSignUp(RequestSignUpDTO(signUpInfo.email, signUpInfo.pw, signUpInfo.name))
+                    .await()
+            }.onSuccess {
+                _signUpResult.value = signUpInfo
+            }.onFailure {
+                if (it is HttpException) {
+                    Log.e("SignUpViewModel", "서버통신 onResponse but not successful")
+                } else {
+                    Log.e("SignUpViewModel", "서버통신 onFailure")
                 }
-            )
+            }
+        }
     }
 }

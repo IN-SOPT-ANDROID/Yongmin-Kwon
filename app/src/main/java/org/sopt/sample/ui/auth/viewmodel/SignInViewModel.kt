@@ -1,13 +1,12 @@
 package org.sopt.sample.ui.auth.viewmodel
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.data.remote.entity.auth.RequestSignInDTO
-import org.sopt.sample.data.remote.entity.auth.ResponseSignInDTO
 import org.sopt.sample.ui.auth.ServerConnectResult
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.HttpException
+import retrofit2.await
 
 class SignInViewModel : ViewModel() {
 
@@ -15,24 +14,19 @@ class SignInViewModel : ViewModel() {
     val signInResult: LiveData<ServerConnectResult> get() = _signInResult
 
     fun signIn(email: String, pw: String) {
-        val loginService = ServicePool.authService // ServiceFactory.retrofit.create<AuthService>()
-        loginService
-            .postSignIn(RequestSignInDTO(email, pw))
-            .enqueue(object : Callback<ResponseSignInDTO> {
-                override fun onResponse(
-                    call: Call<ResponseSignInDTO>,
-                    response: Response<ResponseSignInDTO>
-                ) {
-                    if (response.isSuccessful) {
-                        _signInResult.value = ServerConnectResult.SUCCESS
-                    } else {
-                        _signInResult.value = ServerConnectResult.ON_RESPONSE_FAIL
-                    }
-                }
-
-                override fun onFailure(call: Call<ResponseSignInDTO>, t: Throwable) {
+        val loginService = ServicePool.authService
+        viewModelScope.launch {
+            kotlin.runCatching {
+                loginService.postSignIn(RequestSignInDTO(email, pw)).await()
+            }.onSuccess {
+                _signInResult.value = ServerConnectResult.SUCCESS
+            }.onFailure {
+                if (it is HttpException) {
+                    _signInResult.value = ServerConnectResult.ON_RESPONSE_FAIL
+                } else {
                     _signInResult.value = ServerConnectResult.ON_FAILURE
                 }
-            })
+            }
+        }
     }
 }
