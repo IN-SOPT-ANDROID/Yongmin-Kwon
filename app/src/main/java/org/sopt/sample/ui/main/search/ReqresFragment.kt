@@ -1,22 +1,17 @@
 package org.sopt.sample.ui.main.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.sopt.sample.data.remote.ServicePool
-import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDTO
+import androidx.fragment.app.viewModels
 import org.sopt.sample.databinding.FragmentReqresBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ReqresFragment : Fragment() {
     private var _binding: FragmentReqresBinding? = null
     private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 바인딩 초기화 에러가 발생했습니다." }
-
+    private val reqresViewModel: ReqresViewModel by viewModels()
     private val reqresAdapter: ReqresAdapter by lazy { ReqresAdapter() }
 
     override fun onCreateView(
@@ -31,7 +26,15 @@ class ReqresFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        initReqresNetwork()
+        reqresViewModel.getReqresInfo()
+        observeReqresResult()
+    }
+
+    private fun observeReqresResult() {
+        reqresViewModel.reqresResult.observe(viewLifecycleOwner) {
+            finishLoading()
+            reqresAdapter.submitList(it)
+        }
     }
 
     private fun initAdapter() {
@@ -40,26 +43,5 @@ class ReqresFragment : Fragment() {
 
     private fun finishLoading() {
         binding.loadingLottie.visibility = View.GONE
-    }
-
-    private fun initReqresNetwork() {
-        val reqresService = ServicePool.reqresService
-        reqresService.getUsers(1).enqueue(
-            object : Callback<ResponseReqresDTO> {
-                override fun onResponse(
-                    call: Call<ResponseReqresDTO>,
-                    response: Response<ResponseReqresDTO>
-                ) {
-                    if (response.isSuccessful) {
-                        finishLoading()
-                        reqresAdapter.submitList(response.body()?.data)
-                    } else Log.e("ReqresFragment", "서버 통신 onResponse but not successful")
-                }
-
-                override fun onFailure(call: Call<ResponseReqresDTO>, t: Throwable) {
-                    Log.e("ReqresFragment", "서버 통신 onFailure")
-                }
-            }
-        )
     }
 }
