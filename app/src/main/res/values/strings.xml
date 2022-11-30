@@ -19,18 +19,16 @@
     <string name="checkPw">비밀번호를 확인하세요</string>
     <string name="checkName">이름을 확인하세요</string>
     <string name="checkIdPw">아이디와 비밀번호를 확인하세요</string>
-    <string name="mbtiIsStrange">없는 MBTI입니다</string>
-    <string name="mbtiIsShort">MBTI가 짧습니다</string>
     <string name="needSignUp">회원가입이 필요합니다</string>
-    <string name="idDescription">E-MAIL을 작성해주세요</string>
-    <string name="pwDescription">PW는 8~12글자로 작성해주세요</string>
+    <string name="idDescription">영문, 숫자로 6~10글자</string>
+    <string name="pwDescription">영문, 숫자, 특수문자로 8~12글자</string>
 
     <string name="myPageName">이름 : %1$s</string>
     <string name="myPageMbti">MBTI : %1$s</string>
     <string name="auto_login">AUTO LOGIN</string>
     <string name="logout">LOGOUT</string>
     <string name="name">NAME</string>
-    <string name="enterName">이름을 입력하세요</string>
+    <string name="enterName">한글로 2~4글자</string>
     <string name="myInfo">내 정보</string>
     <string name="age">Age</string>
     <string name="part">Part</string>
@@ -47,8 +45,8 @@
     <string name="gallery">gallery</string>
     <string name="instagram_followers">Instagram Followers</string>
 
-    <string name="serverConnectOnFailure">서버와 통신에 실패하였습니다.</string>
-    <string name="serverConnectResponseError">서버와 통신은 성공했으나 제대로된 응답값을 받지 못했습니다.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pwInValid">비밀번호 형식이 맞지 않습니다</string>
+    <string name="idInValid">아이디 형식이 맞지 않습니다</string>
 </resources>
