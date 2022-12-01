@@ -1,4 +1,4 @@
-package org.sopt.sample.ui.auth
+package org.sopt.sample.domain.model
 
 data class SignUpInfo(
     val email: String,
