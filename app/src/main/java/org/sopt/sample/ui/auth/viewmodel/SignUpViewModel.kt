@@ -55,6 +55,7 @@ class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() 
                 authRepository.signUp(signUpInfo)
             }.onSuccess {
                 _signUpResult.value = signUpInfo
+                authRepository.storeUserInfoInLocal(signUpInfo)
             }.onFailure {
                 if (it is HttpException) {
                     Log.e("SignUpViewModel", "서버통신 onResponse but not successful")

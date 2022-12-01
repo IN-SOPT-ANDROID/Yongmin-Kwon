@@ -55,7 +55,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun observeSignUpResult() {
         signUpViewModel.signUpResult.observe(this) {
-            storeInfoInLocal(it)
             goBackToSignIn(it)
         }
     }
@@ -69,12 +68,5 @@ class SignUpActivity : AppCompatActivity() {
             }
         )
         finish()
-    }
-
-    private fun storeInfoInLocal(signUpInfo: SignUpInfo) {
-        MySharedPreferences.run {
-            name = signUpInfo.name
-            mbti = signUpInfo.mbti
-        }
     }
 }
