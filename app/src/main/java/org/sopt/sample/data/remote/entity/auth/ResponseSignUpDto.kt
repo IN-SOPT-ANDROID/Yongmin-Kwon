@@ -3,18 +3,18 @@ package org.sopt.sample.data.remote.entity.auth
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseSignInDTO(
-    val status: Int,
+data class ResponseSignUpDto(
     val message: String,
-    val result: User
+    val newUser: NewUser,
+    val status: Int
 ) {
     @Serializable
-    data class User(
-        val id: Int,
-        val name: String,
-        val profileImage: String?,
+    data class NewUser(
         val bio: String?,
         val email: String,
-        val password: String
+        val id: Int,
+        val name: String,
+        val password: String,
+        val profileImage: String?
     )
 }

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.api.ServicePool
-import org.sopt.sample.data.remote.entity.auth.RequestSignUpDTO
+import org.sopt.sample.data.remote.entity.auth.RequestSignUpDto
 import org.sopt.sample.ui.auth.AuthChecking
 import org.sopt.sample.ui.auth.EditTextUiState
 import org.sopt.sample.ui.auth.SignUpInfo
@@ -56,7 +56,7 @@ class SignUpViewModel : ViewModel() {
         viewModelScope.launch {
             kotlin.runCatching {
                 signUpService
-                    .postSignUp(RequestSignUpDTO(signUpInfo.email, signUpInfo.pw, signUpInfo.name))
+                    .postSignUp(RequestSignUpDto(signUpInfo.email, signUpInfo.pw, signUpInfo.name))
                     .await()
             }.onSuccess {
                 _signUpResult.value = signUpInfo

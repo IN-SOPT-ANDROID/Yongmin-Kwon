@@ -3,7 +3,7 @@ package org.sopt.sample.ui.auth.viewmodel
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.api.ServicePool
-import org.sopt.sample.data.remote.entity.auth.RequestSignInDTO
+import org.sopt.sample.data.remote.entity.auth.RequestSignInDto
 import org.sopt.sample.ui.auth.ServerConnectResult
 import retrofit2.HttpException
 import retrofit2.await
@@ -17,7 +17,7 @@ class SignInViewModel : ViewModel() {
         val loginService = ServicePool.authService
         viewModelScope.launch {
             kotlin.runCatching {
-                loginService.postSignIn(RequestSignInDTO(email, pw)).await()
+                loginService.postSignIn(RequestSignInDto(email, pw)).await()
             }.onSuccess {
                 _signInResult.value = ServerConnectResult.SUCCESS
             }.onFailure {

@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.api.ServicePool
-import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDTO
+import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDto
 import retrofit2.HttpException
 import retrofit2.await
 
 class ReqresViewModel : ViewModel() {
 
-    private val _reqresResult = MutableLiveData<List<ResponseReqresDTO.Data>>()
-    val reqresResult: LiveData<List<ResponseReqresDTO.Data>> get() = _reqresResult
+    private val _reqresResult = MutableLiveData<List<ResponseReqresDto.Data>>()
+    val reqresResult: LiveData<List<ResponseReqresDto.Data>> get() = _reqresResult
 
     fun getReqresInfo() {
         val reqresService = ServicePool.reqresService
