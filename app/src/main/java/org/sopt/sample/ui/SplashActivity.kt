@@ -8,19 +8,17 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
-import org.sopt.sample.data.MySharedPreferences
+import org.sopt.sample.data.local.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySplashBinding
 import org.sopt.sample.ui.auth.SignInActivity
 import org.sopt.sample.ui.main.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
-    private lateinit var sharedPref: MySharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
-        sharedPref = MySharedPreferences(this)
         setName()
         setContentView(binding.root)
 
@@ -28,13 +26,13 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun setName() {
-        val name = sharedPref.loginName ?: return
+        val name = MySharedPreferences.name ?: return
         binding.textName.text = name
     }
 
     private fun checkAutoLogin() {
-        val id = sharedPref.loginEmail
-        val autoLogin = sharedPref.autoLogin
+        val id = MySharedPreferences.id
+        val autoLogin = MySharedPreferences.autoLogin
         if (id == null) startLogin()
         else if (autoLogin) startHome()
         else startLogin()

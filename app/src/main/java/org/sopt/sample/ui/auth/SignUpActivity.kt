@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import org.sopt.sample.data.MySharedPreferences
+import org.sopt.sample.data.local.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.ui.auth.SignInActivity.Companion.EMAIL
 import org.sopt.sample.ui.auth.SignInActivity.Companion.PW
@@ -61,9 +61,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun storeInfoInLocal(signUpInfo: SignUpInfo) {
-        MySharedPreferences(this).run {
-            loginName = signUpInfo.name
-            loginMbti = signUpInfo.mbti
+        MySharedPreferences.run {
+            name = signUpInfo.name
+            mbti = signUpInfo.mbti
         }
     }
 }

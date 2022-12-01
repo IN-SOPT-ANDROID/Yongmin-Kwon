@@ -8,7 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
-import org.sopt.sample.data.MySharedPreferences
+import org.sopt.sample.data.local.MySharedPreferences
 import org.sopt.sample.databinding.ActivitySignInBinding
 import org.sopt.sample.defaultSnackbar
 import org.sopt.sample.shortToastString
@@ -19,7 +19,6 @@ class SignInActivity : AppCompatActivity() {
     private val signInViewModel: SignInViewModel by viewModels()
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
-    private val sharedPref by lazy { MySharedPreferences(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +85,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun checkAutoLogin() {
         if (!binding.checkBoxAutoLogin.isChecked) return
-        sharedPref.autoLogin = true
+        MySharedPreferences.autoLogin = true
     }
 
     companion object {

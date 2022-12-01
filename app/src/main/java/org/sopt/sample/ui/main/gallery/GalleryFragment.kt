@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.sopt.sample.R
-import org.sopt.sample.data.MySharedPreferences
+import org.sopt.sample.data.local.MySharedPreferences
 import org.sopt.sample.databinding.FragmentGalleryBinding
 import org.sopt.sample.defaultSnackbar
 import org.sopt.sample.ui.auth.SignInActivity
@@ -17,12 +17,12 @@ import org.sopt.sample.ui.auth.SignInActivity
 class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 바인딩 초기화 에러가 발생했습니다." }
-    private val sharedPref by lazy { MySharedPreferences(requireContext()) }
     private val GITHUB = "github"
     private val INSTAGRAM = "instagram"
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentGalleryBinding.inflate(layoutInflater)
@@ -38,17 +38,17 @@ class GalleryFragment : Fragment() {
     }
 
     private fun initText() {
-        binding.textGalleryId.text = sharedPref.loginEmail
-        binding.textGalleryName.text = sharedPref.loginName
-        binding.textMbti.text = sharedPref.loginMbti
+        binding.textGalleryId.text = MySharedPreferences.id
+        binding.textGalleryName.text = MySharedPreferences.name
+        binding.textMbti.text = MySharedPreferences.mbti
     }
 
     private fun clickLogout() {
         binding.buttonLogout.setOnClickListener {
-            with(sharedPref) {
+            with(MySharedPreferences) {
                 autoLogin = false
-                loginName = null
-                loginEmail = null
+                name = null
+                id = null
             }
             goToLogin()
         }
