@@ -34,7 +34,7 @@ class AuthRepositoryImpl() : AuthRepository {
             .await()
     }
 
-    override fun storeUserInfoInLocal(signUpInfo: SignUpInfo) {
+    override suspend fun storeUserInfoInLocal(signUpInfo: SignUpInfo) {
         MySharedPreferences.run {
             name = signUpInfo.name
             mbti = signUpInfo.mbti
