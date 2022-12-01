@@ -1,4 +1,4 @@
-package org.sopt.sample.data.remote
+package org.sopt.sample.data.remote.api
 
 import org.sopt.sample.data.remote.entity.auth.RequestSignInDTO
 import org.sopt.sample.data.remote.entity.auth.RequestSignUpDTO

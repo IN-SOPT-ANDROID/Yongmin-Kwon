@@ -2,7 +2,7 @@ package org.sopt.sample.ui.auth.viewmodel
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.remote.ServicePool
+import org.sopt.sample.data.remote.api.ServicePool
 import org.sopt.sample.data.remote.entity.auth.RequestSignInDTO
 import org.sopt.sample.ui.auth.ServerConnectResult
 import retrofit2.HttpException

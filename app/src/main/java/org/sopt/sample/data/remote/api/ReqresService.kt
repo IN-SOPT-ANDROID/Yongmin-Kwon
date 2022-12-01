@@ -1,4 +1,4 @@
-package org.sopt.sample.data.remote
+package org.sopt.sample.data.remote.api
 
 import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDTO
 import retrofit2.http.GET

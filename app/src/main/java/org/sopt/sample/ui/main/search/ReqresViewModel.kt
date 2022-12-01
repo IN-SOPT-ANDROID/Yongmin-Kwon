@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.remote.ServicePool
+import org.sopt.sample.data.remote.api.ServicePool
 import org.sopt.sample.data.remote.entity.reqres.ResponseReqresDTO
 import retrofit2.HttpException
 import retrofit2.await

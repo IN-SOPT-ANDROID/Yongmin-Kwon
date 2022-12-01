@@ -3,7 +3,7 @@ package org.sopt.sample.ui.auth.viewmodel
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.remote.ServicePool
+import org.sopt.sample.data.remote.api.ServicePool
 import org.sopt.sample.data.remote.entity.auth.RequestSignUpDTO
 import org.sopt.sample.ui.auth.AuthChecking
 import org.sopt.sample.ui.auth.EditTextUiState

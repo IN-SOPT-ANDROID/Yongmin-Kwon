@@ -1,4 +1,4 @@
-package org.sopt.sample.data.remote
+package org.sopt.sample.data.remote.api
 
 import okhttp3.Interceptor
 import okhttp3.Response
