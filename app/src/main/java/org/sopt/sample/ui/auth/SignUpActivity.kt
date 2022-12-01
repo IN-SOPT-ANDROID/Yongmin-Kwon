@@ -2,28 +2,39 @@ package org.sopt.sample.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import org.sopt.sample.data.local.MySharedPreferences
+import org.sopt.sample.data.repositoryimpl.AuthRepositoryImpl
 import org.sopt.sample.databinding.ActivitySignUpBinding
+import org.sopt.sample.domain.model.SignUpInfo
 import org.sopt.sample.ui.auth.SignInActivity.Companion.EMAIL
 import org.sopt.sample.ui.auth.SignInActivity.Companion.PW
 import org.sopt.sample.ui.auth.viewmodel.SignUpViewModel
+import org.sopt.sample.ui.auth.viewmodel.SignUpViewModelFactory
 
 class SignUpActivity : AppCompatActivity() {
-    private val signUpViewModel: SignUpViewModel by viewModels()
+    // private val signUpViewModel: SignUpViewModel by viewModels()
+    private lateinit var signUpViewModel: SignUpViewModel
     private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
-        binding.viewModel = signUpViewModel
-        binding.lifecycleOwner = this
-
+        initViewModel()
         setContentView(binding.root)
         clickSignUp()
         clickBack()
         observeSignUpResult()
+    }
+
+    private fun initViewModel() {
+        signUpViewModel = ViewModelProvider(
+            this,
+            SignUpViewModelFactory(AuthRepositoryImpl())
+        )[SignUpViewModel::class.java]
+        binding.viewModel = signUpViewModel
+        binding.lifecycleOwner = this
     }
 
     private fun clickBack() {

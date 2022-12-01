@@ -3,16 +3,14 @@ package org.sopt.sample.ui.auth.viewmodel
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import org.sopt.sample.data.remote.api.ServicePool
-import org.sopt.sample.data.remote.entity.auth.RequestSignUpDto
+import org.sopt.sample.domain.model.SignUpInfo
+import org.sopt.sample.domain.repository.AuthRepository
 import org.sopt.sample.ui.auth.AuthChecking
 import org.sopt.sample.ui.auth.EditTextUiState
-import org.sopt.sample.ui.auth.SignUpInfo
 import org.sopt.sample.util.addSources
 import retrofit2.HttpException
-import retrofit2.await
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(private val authRepository: AuthRepository) : ViewModel() {
     private val authChecking = AuthChecking()
 
     private val _signUpResult = MutableLiveData<SignUpInfo>()
@@ -52,12 +50,9 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun signUp(signUpInfo: SignUpInfo) {
-        val signUpService = ServicePool.authService
         viewModelScope.launch {
             kotlin.runCatching {
-                signUpService
-                    .postSignUp(RequestSignUpDto(signUpInfo.email, signUpInfo.pw, signUpInfo.name))
-                    .await()
+                authRepository.signUp(signUpInfo)
             }.onSuccess {
                 _signUpResult.value = signUpInfo
             }.onFailure {
