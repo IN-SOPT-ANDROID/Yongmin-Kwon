@@ -38,7 +38,7 @@ class GalleryFragment : Fragment() {
     }
 
     private fun initText() {
-        binding.textGalleryId.text = sharedPref.loginId
+        binding.textGalleryId.text = sharedPref.loginEmail
         binding.textGalleryName.text = sharedPref.loginName
         binding.textMbti.text = sharedPref.loginMbti
     }
@@ -48,7 +48,7 @@ class GalleryFragment : Fragment() {
             with(sharedPref) {
                 autoLogin = false
                 loginName = null
-                loginId = null
+                loginEmail = null
             }
             goToLogin()
         }

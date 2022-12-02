@@ -50,17 +50,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textSignUpId"
+                android:id="@+id/textSignUpEmail"
                 style="@style/LoginTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/id"
+                android:text="@string/email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editSignUpId"
+                android:id="@+id/editSignUpEmail"
                 style="@style/LoginEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 android:hint="@string/idDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textSignUpId" />
+                app:layout_constraintTop_toBottomOf="@+id/textSignUpEmail" />
 
             <TextView
                 android:id="@+id/textSignUpPw"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/password"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editSignUpId" />
+                app:layout_constraintTop_toBottomOf="@+id/editSignUpEmail" />
 
             <EditText
                 android:id="@+id/editSignUpPw"

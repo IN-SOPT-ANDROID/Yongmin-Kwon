@@ -20,8 +20,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
-        sharedPref = MySharedPreferences()
-        sharedPref.init(this)
+        sharedPref = MySharedPreferences(this)
         setName()
         setContentView(binding.root)
 
@@ -34,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkAutoLogin() {
-        val id = sharedPref.loginId
+        val id = sharedPref.loginEmail
         val autoLogin = sharedPref.autoLogin
         if (id == null) startLogin()
         else if (autoLogin) startHome()

@@ -8,14 +8,20 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.R
 import org.sopt.sample.data.MySharedPreferences
+import org.sopt.sample.data.remote.ServicePool
+import org.sopt.sample.data.remote.entity.auth.RequestSignInDTO
+import org.sopt.sample.data.remote.entity.auth.ResponseSignInDTO
 import org.sopt.sample.databinding.ActivitySignInBinding
 import org.sopt.sample.defaultSnackbar
+import org.sopt.sample.shortToast
 import org.sopt.sample.ui.main.HomeActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
-    private val authChecking = AuthChecking()
     private val sharedPref by lazy { MySharedPreferences(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,14 +43,9 @@ class SignInActivity : AppCompatActivity() {
 
     private fun clickLogin() {
         binding.buttonLoginLogin.setOnClickListener {
-            val id = sharedPref.loginId
-            val pw = sharedPref.loginPw
-            val inputId = binding.editLoginId.text.toString()
-            val inputPw = binding.editLoginPw.text.toString()
-            if (!authChecking.isSignInValid(this, id, pw, inputId, inputPw))
-                return@setOnClickListener
-            checkAutoLogin()
-            goToHome()
+            val email = binding.editLoginId.text.toString()
+            val pw = binding.editLoginPw.text.toString()
+            checkLogin(email, pw)
         }
     }
 
@@ -65,7 +66,7 @@ class SignInActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             with(binding) {
                 root.defaultSnackbar(R.string.succeedSignUp)
-                editLoginId.setText(result.data?.getStringExtra(ID))
+                editLoginId.setText(result.data?.getStringExtra(EMAIL))
                 editLoginPw.setText(result.data?.getStringExtra(PW))
             }
         } else binding.root.defaultSnackbar(R.string.failSignUp)
@@ -76,8 +77,30 @@ class SignInActivity : AppCompatActivity() {
         sharedPref.autoLogin = true
     }
 
-    companion object{
-        const val ID = "id"
+    private fun checkLogin(email: String, pw: String) {
+        val loginService = ServicePool.authService //ServiceFactory.retrofit.create<AuthService>()
+        loginService
+            .postSignIn(RequestSignInDTO(email, pw))
+            .enqueue(object : Callback<ResponseSignInDTO> {
+                override fun onResponse(
+                    call: Call<ResponseSignInDTO>,
+                    response: Response<ResponseSignInDTO>
+                ) {
+                    if (response.isSuccessful) {
+                        checkAutoLogin()
+                        goToHome()
+                        shortToast(R.string.succeedSignIn)
+                    } else shortToast(R.string.failSignIn)
+                }
+
+                override fun onFailure(call: Call<ResponseSignInDTO>, t: Throwable) {
+                    shortToast(R.string.failSignIn)
+                }
+            })
+    }
+
+    companion object {
+        const val EMAIL = "email"
         const val PW = "pw"
     }
 }
